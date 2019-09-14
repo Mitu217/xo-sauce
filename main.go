@@ -9,7 +9,7 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/Mitu217/xo-sauce/internal"
+	"github.com/mitu217/xo-sauce/internal"
 	"github.com/alexflint/go-arg"
 )
 

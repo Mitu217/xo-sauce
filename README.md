@@ -12,5 +12,5 @@ $ go get -u github.com/xo/xo
 Then, install in the usual Go way:
 
 ```
-$ go get -u github.com/Mitu217/xo-sauce
+$ go get -u github.com/mitu217/xo-sauce
 ```

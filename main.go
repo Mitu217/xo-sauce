@@ -9,8 +9,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/mitu217/xo-sauce/internal"
 	"github.com/alexflint/go-arg"
+	"github.com/mitu217/xo-sauce/internal"
 )
 
 func main() {

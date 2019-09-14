@@ -86,10 +86,10 @@ func getFile(args *internal.ArgType, t *internal.TBuf) (*os.File, error) {
 
 	// determine filename
 	filename := strings.ToLower(t.Name) + t.EditableType.FileSuffix()
-	filename = path.Join(args.Path, filename)
+	filepath := path.Join(args.Path, filename)
 
 	// lookup file
-	f, ok := files[filename]
+	f, ok := files[filepath]
 	if ok {
 		return f, nil
 	}
@@ -98,13 +98,13 @@ func getFile(args *internal.ArgType, t *internal.TBuf) (*os.File, error) {
 	mode := os.O_RDWR | os.O_CREATE | os.O_TRUNC
 
 	// stat file to determine if file already exists
-	fi, err := os.Stat(filename)
+	fi, err := os.Stat(filepath)
 	if err == nil && fi.IsDir() {
-		return nil, errors.New("filename cannot be directory")
+		return nil, errors.New("filepath cannot be directory")
 	}
 
 	// open file
-	f, err = os.OpenFile(filename, mode, 0666)
+	f, err = os.OpenFile(filepath, mode, 0666)
 	if err != nil {
 		return nil, err
 	}
@@ -116,7 +116,7 @@ func getFile(args *internal.ArgType, t *internal.TBuf) (*os.File, error) {
 	}
 
 	// store file
-	files[filename] = f
+	files[filepath] = f
 
 	return f, nil
 }

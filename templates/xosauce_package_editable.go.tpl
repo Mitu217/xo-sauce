@@ -1,1 +1,1 @@
-package {{ .XoPackage }}
+package {{ .Package }}

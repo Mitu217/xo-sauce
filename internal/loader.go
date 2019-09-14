@@ -8,7 +8,6 @@ import (
 	"go/token"
 	"io/ioutil"
 	"os/exec"
-	"path"
 	"path/filepath"
 	"strings"
 )
@@ -146,7 +145,7 @@ func (l Loader) LoadCodes(args *ArgType) error {
 			continue
 		}
 
-		name := strings.TrimSuffix(fi.Name(), path.Ext(fi.Name()))
+		name := strings.Split(fi.Name(), ".")[0]
 		f, err := parser.ParseFile(fset, filepath.Join(args.XoPath, fi.Name()), nil, 0)
 		if err != nil {
 			return err

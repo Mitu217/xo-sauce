@@ -28,6 +28,9 @@ func (l Loader) generateCodeFromDB(args *ArgType) error {
 	if args.Out != "" {
 		params = append(params, "-o", args.XoPath)
 	}
+	if args.TemplatePath != "" {
+		params = append(params, "--template-path", args.TemplatePath)
+	}
 	output, err := exec.Command("xo", params...).CombinedOutput()
 	if err != nil {
 		return errors.New(string(output))

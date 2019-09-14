@@ -101,19 +101,7 @@ func getFile(args *internal.ArgType, t *internal.TBuf) (*os.File, error) {
 	fi, err := os.Stat(filename)
 	if err == nil && fi.IsDir() {
 		return nil, errors.New("filename cannot be directory")
-		/*
-			} else if _, ok = err.(*os.PathError); !ok && args.Append && t.TemplateType != internal.XOTemplate {
-				// file exists so append if append is set and not XO type
-				mode = os.O_APPEND | os.O_WRONLY
-		*/
 	}
-
-	// skip
-	/*
-		if t.TemplateType == internal.XOTemplate && fi != nil {
-			return nil, nil
-		}
-	*/
 
 	// open file
 	f, err = os.OpenFile(filename, mode, 0666)
@@ -145,13 +133,6 @@ func writeTypes(args *internal.ArgType) error {
 	// loop, writing in order
 	for _, t := range out {
 		var f *os.File
-
-		// skip when in append and type is XO
-		/*
-			if args.Append && t.TemplateType == internal.XOTemplate {
-				continue
-			}
-		*/
 
 		// check if generated template is only whitespace/empty
 		bufStr := strings.TrimSpace(t.Buf.String())

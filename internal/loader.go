@@ -152,13 +152,13 @@ func (l Loader) LoadCodes(args *ArgType) error {
 		// delete table files in black list
 		shouldDeleted := false
 		for _, b := range args.BlackList {
-			if strings.Index(b, fi.Name()) > 0 {
+			if strings.Index(fi.Name(), b) != -1 {
 				shouldDeleted = true
 				break
 			}
 		}
 		if shouldDeleted {
-			if err := os.Remove(args.XoPath + fi.Name()); err != nil {
+			if err := os.Remove(filepath.Join(args.XoPath, fi.Name())); err != nil {
 				return err
 			}
 			continue

@@ -100,6 +100,9 @@ func getFile(args *internal.ArgType, t *internal.TBuf) (*os.File, error) {
 	if err == nil && fi.IsDir() {
 		return nil, errors.New("filepath cannot be directory")
 	}
+	if err == nil && t.EditableType == internal.FileEditableType {
+		return nil, nil
+	}
 
 	// open file
 	f, err = os.OpenFile(filepath, mode, 0666)
@@ -144,7 +147,7 @@ func writeTypes(args *internal.ArgType) error {
 			return err
 		}
 
-		// should only be nil when type == xo
+		// should only be nil when editable_type == true
 		if f == nil {
 			continue
 		}

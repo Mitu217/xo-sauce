@@ -28,8 +28,6 @@ func main() {
 	if err := writeTypes(args); err != nil {
 		panic(err)
 	}
-
-	// TODO: delete unused files
 }
 
 // processArgs processs cli args.

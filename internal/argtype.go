@@ -12,12 +12,16 @@ type ArgType struct {
 	// the built in versions.
 	TemplatePath string `arg:"--template-path,help:user supplied template path"`
 
+	// Path is output path
 	Path string `arg:"-"`
 
+	// Package is output package name
 	Package string `arg:"-"`
 
+	// XoPath is generated path by xo
 	XoPath string `arg:"-"`
 
+	// XoPackage is generated package by xo
 	XoPackage string `arg:"-"`
 
 	// Loader is the load model.

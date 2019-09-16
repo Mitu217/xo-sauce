@@ -7,6 +7,7 @@ import (
 	"go/parser"
 	"go/token"
 	"io/ioutil"
+	"os"
 	"os/exec"
 	"path/filepath"
 	"strings"
@@ -148,6 +149,22 @@ func (l Loader) LoadCodes(args *ArgType) error {
 			continue
 		}
 
+		// delete table files in black list
+		shouldDeleted := false
+		for _, b := range args.BlackList {
+			if strings.Index(b, fi.Name()) > 0 {
+				shouldDeleted = true
+				break
+			}
+		}
+		if shouldDeleted {
+			if err := os.Remove(args.XoPath + fi.Name()); err != nil {
+				return err
+			}
+			continue
+		}
+
+		// parse file
 		name := strings.Split(fi.Name(), ".")[0]
 		f, err := parser.ParseFile(fset, filepath.Join(args.XoPath, fi.Name()), nil, 0)
 		if err != nil {

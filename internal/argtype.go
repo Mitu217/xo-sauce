@@ -12,6 +12,9 @@ type ArgType struct {
 	// the built in versions.
 	TemplatePath string `arg:"--template-path,help:user supplied template path"`
 
+	// BlackList is ignore table names
+	BlackList []string `arg:"--black-list,help:ignore table names"`
+
 	// Path is output path
 	Path string `arg:"-"`
 

@@ -69,6 +69,11 @@ func processArgs(args *internal.ArgType) error {
 		}
 	}
 
+	// unify blacklist
+	for i, b := range args.BlackList {
+		args.BlackList[i] = strings.Replace(strings.ToLower(b), "_", "", -1)
+	}
+
 	return nil
 }
 
